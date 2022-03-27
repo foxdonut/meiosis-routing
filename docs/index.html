@@ -1,0 +1,486 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>meiosis-routing</title>
+	<meta name="description" content="Documentation for meiosis-routing">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">meiosis-routing</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>meiosis-routing</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#meiosis-routing" id="meiosis-routing" style="color: inherit; text-decoration: none;">
+					<h1>meiosis-routing</h1>
+				</a>
+				<p><a href="https://meiosis.js.org">Meiosis</a> is a pattern, not a library. Nevertheless, in response to popular
+					demand and for your convenience, here are some reusable snippets of code that help setup and use
+				Meiosis. This module provides support for routing in two modules:</p>
+				<ul>
+					<li><p><code>state</code>: provides functions that help manage routing state</p>
+					</li>
+					<li><p><code>router-helper</code>: provides support for configuring routes and creating a router. Out-of-the-box
+						support is provided for these router libraries:</p>
+						<ul>
+							<li><a href="https://github.com/HenrikJoreteg/feather-route-matcher">feather-route-matcher</a></li>
+							<li><a href="https://github.com/cerebral/url-mapper">url-mapper</a></li>
+							<li><a href="https://mithril.js.org/route.html">Mithril Router</a></li>
+						</ul>
+					</li>
+				</ul>
+				<p>You can also plug in another router library of your choice.</p>
+				<a href="#benefits" id="benefits" style="color: inherit; text-decoration: none;">
+					<h2>Benefits!</h2>
+				</a>
+				<p>Meiosis Routing gives you <em>programmable routes</em> which you manage in application state, with the
+				following benefits:</p>
+				<ul>
+					<li>Simple route configuration</li>
+					<li>No hardcoded paths in links</li>
+					<li>Parent and child routes, and reusable child routes</li>
+					<li>Relative navigation: navigate to a parent, sibling, or child route</li>
+					<li>Navigate to the same route but with different parameters</li>
+					<li>Redirect to a route after an action</li>
+					<li>Authenticate / authorize before going to a route</li>
+					<li>Load data (synchronously or asynchronously) when arriving at a route</li>
+					<li>Clean up state when leaving a route</li>
+					<li>Trigger arriving and leaving a route based on route and query parameters</li>
+					<li>Prevent leaving a route to e.g. warn user of unsaved data</li>
+				</ul>
+				<p>Because routing is managed in application state, you don&#39;t need a complex router with support for
+					all of the above. The actual router is just a thin layer that matches URLs to routes. You can use
+					one of the routers mentioned above, or plug in your own.
+					<a href="https://github.com/henrikjoreteg/feather-route-matcher">feather-route-matcher</a> is a nice example of
+				how you only need a lightweight router library.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>Using <code>npm</code>:</p>
+				<pre><code><span class="hljs-built_in">npm</span> i meiosis-routing</code></pre><p>Using a <code>script</code> tag:</p>
+				<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/meiosis-routing&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>Using the <code>script</code> tag exposes a <code>MeiosisRouting</code> global, under which the helper functions are
+				provided:</p>
+				<ul>
+					<li><code>state.*</code></li>
+					<li><code>routerHelper.*</code></li>
+				</ul>
+				<a href="#using-meiosis-routing" id="using-meiosis-routing" style="color: inherit; text-decoration: none;">
+					<h2>Using <code>meiosis-routing</code></h2>
+				</a>
+				<blockquote>
+					<p><strong>PLEASE NOTE</strong> that this is a summary of how to use <code>meiosis-routing</code>. Refer to
+						<a href="https://meiosis.js.org/docs/routing.html">this tutorial</a> for a more detailed explanation.
+					Also refer to the tutorial to use <code>meiosis-routing</code> with <a href="https://mithil.js.org">Mithril</a>.</p>
+				</blockquote>
+				<a href="#create-route-segments" id="create-route-segments" style="color: inherit; text-decoration: none;">
+					<h3>Create Route Segments</h3>
+				</a>
+				<p>Meiosis Routing is based on the idea of <em>route segments_, which are plain objects of the form
+				<code>{ id, params }</code>. Then, a _route</em> is an <strong>array</strong> of route segments:</p>
+				<pre><code class="language-javascript">[{ <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;User&quot;</span>, <span class="hljs-attr">params</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;duck&quot;</span> }, { <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;Profile&quot;</span> } }]</code></pre>
+				<p>Using an array of route segments opens up some nice possibilities:</p>
+				<ul>
+					<li>Navigating to same, parent, sibling, or child route</li>
+					<li>Creating reusable child routes</li>
+					<li>Managing pages and transitions independently of route paths</li>
+				</ul>
+				<p>For convenience, <code>meiosis-routing/state</code> provides the <code>createRouteSegments</code> to which you provide an
+				array of strings that correspond to the route segments of your application:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { createRouteSegments } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;meiosis-routing/state&quot;</span>;
+
+<span class="hljs-keyword">const</span> Route = createRouteSegments([
+  <span class="hljs-string">&quot;Home&quot;</span>,
+  <span class="hljs-string">&quot;Login&quot;</span>,
+  <span class="hljs-string">&quot;User&quot;</span>,
+  <span class="hljs-string">&quot;Profile&quot;</span>,
+  <span class="hljs-string">&quot;Preferences&quot;</span>
+]);
+
+Route.Home()
+<span class="hljs-comment">// returns { id: &quot;Home&quot;, params: {} }</span>
+
+[Route.User({ <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;duck&quot;</span> }), Route.Profile()]
+<span class="hljs-comment">// returns [{ id: &quot;User&quot;, params: { name: &quot;duck&quot; } }, { id: &quot;Profile&quot;, params: {} }]</span></code></pre>
+				<p>Now that we can create route segments and routes (arrays of route segments), let&#39;s use <em>routing</em> to
+				manage them.</p>
+				<a href="#use-routing" id="use-routing" style="color: inherit; text-decoration: none;">
+					<h3>Use <code>Routing</code></h3>
+				</a>
+				<p>We&#39;ll store the current route in the application state, under <code>route</code>:</p>
+				<pre><code class="language-javascript">{ <span class="hljs-attr">route</span>: [Route.Home()] }</code></pre>
+				<p>Next, from our top-level component, we&#39;ll create an instance of <code>Routing</code>, passing in the current
+				route. The <code>routing</code> instance we get has these properties and functions:</p>
+				<ul>
+					<li><code>localSegment: RouteSegment</code></li>
+					<li><code>childSegment: RouteSegment</code></li>
+					<li><code>next(): routing</code></li>
+					<li><code>parentRoute(): Route</code></li>
+					<li><code>childRoute(route): Route</code></li>
+					<li><code>siblingRoute(route): Route</code></li>
+					<li><code>sameRoute(params): Route</code></li>
+				</ul>
+				<p>We can now render the top-level component according to the <code>localSegment</code> id. We can use a simple
+				<code>string</code>&rarr;<code>Component</code> map to look up the corresponding component:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Routing } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;meiosis-routing/state&quot;</span>;
+<span class="hljs-keyword">import</span> { Home, Login, User } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./our-components&quot;</span>;
+
+<span class="hljs-keyword">const</span> componentMap = { Home, Login, User };
+
+<span class="hljs-keyword">const</span> Root = <span class="hljs-function">(<span class="hljs-params">{ state }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> routing = Routing(state.route);
+  <span class="hljs-keyword">const</span> Component = componentMap[routing.localSegment.id];
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {/* ... */}
+      <span class="hljs-tag">&lt;<span class="hljs-name">Component</span> /* <span class="hljs-attr">other</span> <span class="hljs-attr">props...</span> */ <span class="hljs-attr">routing</span>=<span class="hljs-string">{routing}</span> /&gt;</span>
+      {/* ... */}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};</code></pre>
+				<p>Then in the <code>Component</code>, we can use <code>routing.localSegment.params</code> to retrieve any params. Again we
+					can use a component map, now using <code>routing.childSegment.id</code>. We can do this for as many levels as
+					we want, taking care to pass <code>routing.next()</code> down to the child component so that we &quot;advance&quot; the
+				routing instance:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Profile, Preferences } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./our-components&quot;</span>;
+
+<span class="hljs-keyword">const</span> componentMap = { Profile, Preferences };
+
+<span class="hljs-keyword">const</span> User = <span class="hljs-function">(<span class="hljs-params">{ state, routing }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> params = routing.localSegment.params;
+  <span class="hljs-keyword">const</span> Component = componentMap[routing.childSegment.id];
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {/* ... */}
+      <span class="hljs-tag">&lt;<span class="hljs-name">Component</span> /* <span class="hljs-attr">other</span> <span class="hljs-attr">props...</span> */ <span class="hljs-attr">routing</span>=<span class="hljs-string">{routing.next()}</span> /&gt;</span>
+      {/* ... */}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};</code></pre>
+				<p>To navigate to a route, we can use a simple action that updates the state&#39;s <code>route</code> property:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> navigateTo = <span class="hljs-function"><span class="hljs-params">route</span> =&gt;</span> ({ <span class="hljs-attr">nextRoute</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">Array</span>.isArray(route) ? route : [route] });
+
+<span class="hljs-keyword">const</span> Actions = <span class="hljs-function"><span class="hljs-params">update</span> =&gt;</span> ({ <span class="hljs-attr">navigateTo</span>: <span class="hljs-function"><span class="hljs-params">route</span> =&gt;</span> update(navigateTo(route)) });
+
+<span class="hljs-keyword">const</span> update = ...;
+<span class="hljs-keyword">const</span> actions = Actions(update);
+
+<span class="hljs-comment">// ...</span>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> actions.navigateTo(
+  [Route.User({ id: userId }), Route.Profile()]
+)}&gt;
+  User Profile
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></code></pre>
+				<p>We can also navigate to a parent route, child route, sibling route, and same route:</p>
+				<pre><code class="language-jsx"><span class="hljs-comment">// Say we are in [Route.User({ name }), Route.Profile()].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name })]</span>
+&lt;a href=<span class="hljs-string">&quot;#&quot;</span> onClick={<span class="hljs-function">() =&gt;</span> actions.navigateTo(
+  routing.parentRoute()
+)}&gt;
+  User
+&lt;/a&gt;
+
+<span class="hljs-comment">// Say we are in [Route.User({ name })].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name }), Route.Profile()]</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> actions.navigateTo(
+  routing.childRoute(Route.Profile())
+)}&gt;
+  Profile
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+
+<span class="hljs-comment">// Say we are in [Route.User({ name }), Route.Profile()].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name }), Route.Preferences({ name })]</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> actions.navigateTo(
+  routing.siblingRoute(Route.Preferences({ name }))
+)}&gt;
+  Preferences
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+
+<span class="hljs-comment">// Say we are in [Route.User({ name: &quot;name1&quot; })].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name: &quot;name2&quot; })]</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> actions.navigateTo(
+  routing.sameRoute({ name: &quot;name2&quot; }))
+)}&gt;
+  Preferences
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></code></pre>
+				<p>Note that you can also pass an array of route segments to <code>childRoute</code> and <code>siblingRoute</code>.</p>
+				<p>We now have an application that uses routing and works just fine without a router and without paths.
+				To add paths, we can plug in a simple router library.</p>
+				<a href="#create-and-use-a-router" id="create-and-use-a-router" style="color: inherit; text-decoration: none;">
+					<h3>Create and use a Router</h3>
+				</a>
+				<p>Adding a router gives us the ability to generate paths and put them in the <code>href</code> attribute of our
+					links. The path will show in the browser&#39;s location bar, users can use the <em>back</em> and <em>forward</em>
+				buttons, bookmark links, and so on.</p>
+				<p>What&#39;s nice is that we can continue using <em>programmatic</em> routes as we&#39;ve done so far. Route paths
+					are generated from routes, so we never have to hardcode paths or mess with them in our application&#39;s
+				routing logic.</p>
+				<a href="#route-configuration" id="route-configuration" style="color: inherit; text-decoration: none;">
+					<h4>Route Configuration</h4>
+				</a>
+				<p>First, we create a route configuration. This is a plain object with <code>id</code>&rarr;<code>config</code> mappings,
+				where <code>id</code> is the id of the route segment, and <code>config</code> can either be:</p>
+				<ul>
+					<li>a string: the route path</li>
+					<li>an array: <code>[ path, (optional) array of parameters from the parent, nested route config ]</code></li>
+				</ul>
+				<p>For example:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> routeConfig = {
+  <span class="hljs-attr">Home</span>: <span class="hljs-string">&quot;/&quot;</span>,
+  <span class="hljs-attr">User</span>: [<span class="hljs-string">&quot;/user/:name&quot;</span>, {
+    <span class="hljs-attr">Profile</span>: <span class="hljs-string">&quot;/profile&quot;</span>,
+    <span class="hljs-attr">Preferences</span>: [<span class="hljs-string">&quot;/preferences&quot;</span>, [<span class="hljs-string">&quot;name&quot;</span>]]
+  }]
+}</code></pre>
+				<p>This gives us the following path &rarr; route mappings:</p>
+				<ul>
+					<li><code>/</code> &rarr; <code>[Route.Home()]</code></li>
+					<li><code>/user/:name</code> &rarr; <code>[Route.User({ name })]</code></li>
+					<li><code>/user/:name/profile</code> &rarr; <code>[Route.User({ name }), Route.Profile()]</code></li>
+					<li><code>/user/:name/preferences</code> &rarr; <code>[Route.User({ name }), Route.Profile({ name })]</code></li>
+				</ul>
+				<a href="#create-the-router" id="create-the-router" style="color: inherit; text-decoration: none;">
+					<h4>Create the Router</h4>
+				</a>
+				<p>Next, we create a router. The router libraries mentioned at the top of the page are supported
+				out-of-the-box. Let&#39;s use <code>feather-route-matcher</code>:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> createRouteMatcher <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;feather-route-matcher&quot;</span>;
+<span class="hljs-keyword">import</span> { createFeatherRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;meiosis-routing/router-helper&quot;</span>;
+
+<span class="hljs-keyword">const</span> routeConfig = { ... };
+
+<span class="hljs-keyword">const</span> router = createFeatherRouter({
+  createRouteMatcher,
+  routeConfig,
+  <span class="hljs-attr">defaultRoute</span>: [Route.Home()]
+});</code></pre>
+				<a href="#use-the-router" id="use-the-router" style="color: inherit; text-decoration: none;">
+					<h4>Use the Router</h4>
+				</a>
+				<p>This gives us a <code>router</code> with:</p>
+				<ul>
+					<li><code>router.initialRoute</code>: the initial route as parsed from the browser&#39;s location bar. We can use
+					this in our application&#39;s initial state, <code>{ route: router.initialRoute }</code></li>
+					<li><code>router.start()</code>: a function to call at application startup. We pass a <code>navigateTo</code> callback for
+					route changes: <code>router.start({ navigateTo: actions.navigateTo })</code></li>
+					<li><code>router.toPath(route)</code>: converts a route into a path. For example, <code>router.toPath([Route.Home()])</code>
+					or a relative route such as <code>router.toPath(routing.parentRoute())</code>.</li>
+					<li><code>router.locationBarSync()</code>: a function to call to keep the location bar in sync. Every time the
+					state changes, we call <code>router.locationBarSync(state.route)</code>.</li>
+				</ul>
+				<p>Now that we have <code>router.toPath</code>, we no longer need to have <code>href=&quot;#&quot;</code> and <code>onClick={...}</code> in our
+				links. Instead, we can use <code>router.toPath()</code> in <code>href</code>:</p>
+				<pre><code class="language-jsx"><span class="hljs-comment">// Say we are in [Route.User({ name }), Route.Profile()].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name })]</span>
+&lt;a href={router.toPath(routing.parentRoute())}&gt;
+  User
+&lt;/a&gt;
+
+<span class="hljs-comment">// Say we are in [Route.User({ name })].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name }), Route.Profile()]</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">{router.toPath(routing.childRoute(Route.Profile()))}</span>&gt;</span>
+  Profile
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+
+<span class="hljs-comment">// Say we are in [Route.User({ name }), Route.Profile()].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name }), Route.Preferences({ name })]</span>
+<span class="hljs-comment">// Notice that we don&#x27;t have to specify ({ name }) in Route.Preferences(),</span>
+<span class="hljs-comment">// since it is a parameter that is inherited from the parent route segment.</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">{router.toPath(routing.siblingRoute(Route.Preferences()))}</span>&gt;</span>
+  Preferences
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+
+<span class="hljs-comment">// Say we are in [Route.User({ name: &quot;name1&quot; })].</span>
+<span class="hljs-comment">// This navigates to [Route.User({ name: &quot;name2&quot; })]</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">{router.toPath(routing.sameRoute({</span> <span class="hljs-attr">name:</span> &quot;<span class="hljs-attr">name2</span>&quot; }))}&gt;</span>
+  Profile
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></code></pre>
+				<a href="#optional-use-query-strings" id="optional-use-query-strings" style="color: inherit; text-decoration: none;">
+					<h4>(Optional) Use Query Strings</h4>
+				</a>
+				<p>We can use query strings by plugging in a query string library such as:</p>
+				<ul>
+					<li><a href="https://github.com/sindresorhus/query-string">query-string</a></li>
+					<li><a href="https://github.com/ljharb/qs">qs</a></li>
+					<li><a href="https://github.com/cerebral/urlon">urlon</a></li>
+				</ul>
+				<blockquote>
+					<p>Note that query strings work out-of-the-box with <a href="https://mithril.js.org">Mithril</a>.
+						Refer to the <a href="https://meiosis.js.org/docs/routing.html">routing tutorial</a> for information on using
+					<code>meiosis-routing</code> with Mithril.</p>
+				</blockquote>
+				<p>To use a query string library, we just need to specify it as <code>queryString</code> when creating the router:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> createRouteMatcher <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;feather-route-matcher&quot;</span>;
+<span class="hljs-keyword">import</span> qs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;qs&quot;</span>;
+
+<span class="hljs-keyword">const</span> router = createFeatherRouter({
+  createRouteMatcher,
+  <span class="hljs-attr">queryString</span>: qs,
+  routeConfig,
+  <span class="hljs-attr">defaultRoute</span>: [Route.Home()]
+});</code></pre>
+				<p>Then, we specify query string parameters in our route configuration using <code>?</code> and/or <code>&amp;</code>:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> routeConfig = {
+  <span class="hljs-attr">Home</span>: <span class="hljs-string">&quot;/&quot;</span>,
+  <span class="hljs-attr">User</span>: [<span class="hljs-string">&quot;/user/:name?param1&quot;</span>, {
+    <span class="hljs-attr">Profile</span>: <span class="hljs-string">&quot;/profile?param2&amp;param3&quot;</span>,
+    <span class="hljs-attr">Preferences</span>: [<span class="hljs-string">&quot;/preferences&quot;</span>, [<span class="hljs-string">&quot;name&quot;</span>]]
+  }]
+};</code></pre>
+				<p>The parameters will be available in our route segments just like path parameters.</p>
+				<a href="#use-transitions" id="use-transitions" style="color: inherit; text-decoration: none;">
+					<h3>Use Transitions</h3>
+				</a>
+				<p>It&#39;s often desirable to load data when arriving at a route, clear data when leaving a route, guard a
+				route to restrict access, and so on. We can do them with route <em>transitions</em>.</p>
+				<p><code>meiosis-routing</code> provides a <code>routeTransition</code> function that takes the current and next route state
+					and returns a route transition object, <code>{ leave: {...}, arrive: {...} }</code>. You can use this function
+					in a <a href="http://meiosis.js.org/docs/services.html#using_meiosis_setup">service function</a> to update the
+				state with the route transition.</p>
+				<p>As a service function, it looks like this:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> service = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ({
+  <span class="hljs-attr">routeTransition</span>: <span class="hljs-function">() =&gt;</span> routeTransition(state.route, state.nextRoute),
+  <span class="hljs-attr">route</span>: state.nextRoute
+});</code></pre>
+				<p>With this, <code>state.routeTransition</code> will contain <code>leave</code> and <code>arrive</code> properties with the routes that
+					we left and arrived to, keyed by route id. We can then use this to perform any actions we want when
+				leaving from or arriving to a route:</p>
+				<pre><code class="language-javascript"><span class="hljs-comment">// in service function, reducer, etc.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadDataForUser</span>(<span class="hljs-params">state</span>) </span>{
+  <span class="hljs-keyword">if</span> (state.routeTransition.arrive.User) {
+    <span class="hljs-keyword">const</span> name = state.routeTransition.arrive.User.params.name;
+    <span class="hljs-comment">// load data for user according to the value of &#x27;name&#x27;...</span>
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cleanup</span>(<span class="hljs-params">state</span>) </span>{
+  <span class="hljs-keyword">if</span> (state.routeTransition.leave.User) {
+    <span class="hljs-comment">// leaving User route segment, cleanup...</span>
+  }
+}</code></pre>
+				<a href="#for-more-details" id="for-more-details" style="color: inherit; text-decoration: none;">
+					<h3>For More Details</h3>
+				</a>
+				<p>As mentioned above, you will find a more in-depth tutorial in the
+				<a href="https://meiosis.js.org/docs/routing.html">Meiosis Routing documentation</a>.</p>
+				<p>More details are also available in the
+				<a href="https://meiosis.js.org/meiosis-routing/modules/_index_.html">API documentation</a>.</p>
+				<a href="#changelog" id="changelog" style="color: inherit; text-decoration: none;">
+					<h2>Changelog</h2>
+				</a>
+				<ul>
+					<li><p>Version 3.0.0: Works with <code>feather-route-matcher</code> version <code>4.x</code>. Breaking changes: removed
+							<code>navigateTo</code> and <code>Actions</code> since they were limited to working with Mergerino. These should instead
+						be implemented in application code.</p>
+					</li>
+					<li><p>Version 2.1.0: Works with <code>feather-route-matcher</code> version <code>3.x</code>.</p>
+					</li>
+				</ul>
+				<a href="#credits" id="credits" style="color: inherit; text-decoration: none;">
+					<h2>Credits</h2>
+				</a>
+				<p>Many thanks to <a href="https://github.com/smuemd">Stephan Thon</a> for experimenting with early versions,
+					testing and reporting bugs, and providing feedback and suggestions. Your help is very valuable and
+				much appreciated!</p>
+				<hr>
+				<p><em>meiosis-routing is developed by <a href="https://github.com/foxdonut">foxdonut</a>
+				(<a href="http://twitter.com/foxdonut00">@foxdonut00</a>) and is released under the MIT license.</em></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_router_helper_index_.html">&quot;router-<wbr>helper/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_state_index_.html">&quot;state/index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
